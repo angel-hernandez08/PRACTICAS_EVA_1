@@ -1,0 +1,300 @@
+ Extra          |
++----------------------+--------------------------------+------+-----+---------+
+----------------+
+| id                   | int(11)                        | NO   | PRI | NULL    |
+ auto_increment |
+| id_depto             | int(11)                        | YES  | UNI | NULL    |
+                |
+| nombre               | int(11)                        | NO   |     | NULL    |
+                |
+| apellido             | varchar(50)                    | NO   |     | NULL    |
+                |
+| iniciales            | varchar(50)                    | YES  |     | NULL    |
+                |
+| fecha_de_naciemiento | date                           | NO   |     | NULL    |
+                |
+| rfc                  | int(11)                        | YES  |     | NULL    |
+                |
+| nss                  | varchar(20)                    | NO   | UNI | NULL    |
+                |
+| ciudad_de_nacimiento | text                           | YES  |     | NULL    |
+                |
+| estados              | enum('cuu','cdmx','bcn','son') | YES  |     | NULL    |
+                |
+| pais                 | varchar(10)                    | YES  |     | NULL    |
+                |
+| numero_tel           | varchar(50)                    | YES  |     | NULL    |
+                |
+| tel_fijo             | varchar(50)                    | YES  |     | NULL    |
+                |
+| salario              | int(20)                        | YES  |     | NULL    |
+                |
++----------------------+--------------------------------+------+-----+---------+
+----------------+
+14 rows in set (0.0062 sec)
+
+MySQL [localhost ssl/eva_1] SQL> create user 'consultas'@'localhost' indentified
+                                 create user 'consultas'@'localhost' indentified
+ by'xxxx1234';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'inde
+ntified by'xxxx1234'' at line 1
+
+MySQL [localhost ssl/eva_1] SQL> create user 'consultas'@'localhost' identified
+by'xxxx1234';
+Query OK, 0 rows affected (0.1758 sec)
+
+MySQL [localhost ssl/eva_1] SQL> desc empleados;
++----------------------+--------------------------------+------+-----+---------+
+----------------+
+| Field                | Type                           | Null | Key | Default |
+ Extra          |
++----------------------+--------------------------------+------+-----+---------+
+----------------+
+| id                   | int(11)                        | NO   | PRI | NULL    |
+ auto_increment |
+| id_depto             | int(11)                        | YES  | UNI | NULL    |
+                |
+| nombre               | int(11)                        | NO   |     | NULL    |
+                |
+| apellido             | varchar(50)                    | NO   |     | NULL    |
+                |
+| iniciales            | varchar(50)                    | YES  |     | NULL    |
+                |
+| fecha_de_naciemiento | date                           | NO   |     | NULL    |
+                |
+| rfc                  | int(11)                        | YES  |     | NULL    |
+                |
+| nss                  | varchar(20)                    | NO   | UNI | NULL    |
+                |
+| ciudad_de_nacimiento | text                           | YES  |     | NULL    |
+                |
+| estados              | enum('cuu','cdmx','bcn','son') | YES  |     | NULL    |
+                |
+| pais                 | varchar(10)                    | YES  |     | NULL    |
+                |
+| numero_tel           | varchar(50)                    | YES  |     | NULL    |
+                |
+| tel_fijo             | varchar(50)                    | YES  |     | NULL    |
+                |
+| salario              | int(20)                        | YES  |     | NULL    |
+                |
++----------------------+--------------------------------+------+-----+---------+
+----------------+
+14 rows in set (0.0055 sec)
+
+MySQL [localhost ssl/eva_1] SQL>
+MySQL [localhost ssl/eva_1] SQL>
+MySQL [localhost ssl/eva_1] SQL>
+MySQL [localhost ssl/eva_1] SQL> grant select (nombre,apellido,fecha_nacimiento)
+                                 grant select (nombre,apellido,fecha_nacimiento)
+                                 grant select (nombre,apellido,fecha_nacimiento)
+                                 grant select (nombre,apellido,fecha_nacimiento)
+                                 grant select (nombre,apellido,fecha_nacimi:;to)
+                                 grant select (nombre,apellido,fecha_nacimi:;to)
+
+
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near ':' a
+t line 1
+
+                              -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'to)'
+ at line 1
+
+MySQL [localhost ssl/eva_1] SQL> grant select nombre,apellidos,fecha_de_nacimien
+                                 grant select nombre,apellidos,fecha_de_nacimien
+to) on eva_1.empleados to 'consultas'@'localhost';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'nomb
+re,apellidos,fecha_de_nacimiento) on eva_1.empleados to 'consultas'@'localho' at
+ line 1
+
+MySQL [localhost ssl/eva_1] SQL> grant select (nombre,apellidos,fecha_de_nacimie
+nto) on eva_1.empleados to 'consultas'@'localhost';
+ERROR: 1054 (42S22): Unknown column 'apellidos' in 'empleados'
+
+MySQL [localhost ssl/eva_1] SQL> grant select (nombre,apellido,fecha_de_nacimien
+to) on eva_1.empleados to 'consultas'@'localhost';
+ERROR: 1054 (42S22): Unknown column 'fecha_de_nacimiento' in 'empleados'
+
+MySQL [localhost ssl/eva_1] SQL> grant select (nombre,apellido,fecha_de_naciemie
+nto) on eva_1.empleados to 'consultas'@'localhost';
+Query OK, 0 rows affected (0.1148 sec)
+
+MySQL [localhost ssl/eva_1] SQL> \connect --mc consultas@localhost
+Creating a Classic session to 'consultas@localhost'
+Please provide the password for 'consultas@localhost': ********
+Save password for 'consultas@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 9
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] SQL> select nombre,apellido, fecha_de_naciemto;
+ERROR: 1054 (42S22): Unknown column 'nombre' in 'field list'
+
+MySQL [localhost ssl] SQL> \use eva_1
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL>
+MySQL [localhost ssl/eva_1] SQL> select nombre,apellido, fecha_de_naciemto;
+ERROR: 1054 (42S22): Unknown column 'nombre' in 'field list'
+
+MySQL [localhost ssl/eva_1] SQL> \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 10
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] SQL> \use eva_1
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL> desc paises;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre     | varchar(50) | NO   | UNI | NULL    |                |
+| continente | varchar(50) | YES  |     | NULL    |                |
+| poblacion  | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0047 sec)
+
+MySQL [localhost ssl/eva_1] SQL> grant insert (nombre) on
+                              -> eva_1.paises to 'consultas'@'localhost'
+                              -> ;
+Query OK, 0 rows affected (0.1471 sec)
+
+MySQL [localhost ssl/eva_1] SQL> \connect --mc consultas@localhost
+Creating a Classic session to 'consultas@localhost'
+Please provide the password for 'consultas@localhost': ********
+Save password for 'consultas@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 11
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] SQL> show tables;
+ERROR: 1046 (3D000): No database selected
+
+MySQL [localhost ssl] SQL> \use eva_1
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL> show tables;
++-----------------+
+| Tables_in_eva_1 |
++-----------------+
+| empleados       |
+| paises          |
++-----------------+
+2 rows in set (0.0037 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select from paises;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'from
+ paises' at line 1
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
+ERROR: 1142 (42000): SELECT command denied to user 'consultas'@'localhost' for t
+able 'paises'
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises (nombre)
+                              -> values ('haiti');
+Query OK, 1 row affected (0.2562 sec)
+
+MySQL [localhost ssl/eva_1] SQL> \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 12
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] SQL> \use ev
+MySQL Error 1049: Unknown database 'ev'
+
+MySQL [localhost ssl] SQL> \use eva_1
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  5 | Mexico | America    |    120000 |
+|  6 | canada | hamerica   |  32000000 |
+|  7 | haiti  | NULL       |      NULL |
++----+--------+------------+-----------+
+3 rows in set (0.0024 sec)
+
+MySQL [localhost ssl/eva_1] SQL> revoke insert on eva_1.paises
+                              -> from
+                              -> 'consultas'@'localhost';
+Query OK, 0 rows affected (0.1011 sec)
+
+MySQL [localhost ssl/eva_1] SQL> \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 13
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] SQL> \connect --mc consultas@localhost
+Creating a Classic session to 'consultas@localhost'
+Please provide the password for 'consultas@localhost': ********
+Save password for 'consultas@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 14
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] SQL> \use eva_1
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL> show tables;
++-----------------+
+| Tables_in_eva_1 |
++-----------------+
+| empleados       |
++-----------------+
+1 row in set (0.0049 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises (nombre) values('hola');
+ERROR: 1142 (42000): INSERT command denied to user 'consultas'@'localhost' for t
+able 'paises'
+
+MySQL [localhost ssl/eva_1] SQL> \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching schema names for autocompletion... Press ^C to stop.
+Closing old connection...
+Your MySQL connection id is 15
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] SQL> \use eva_1
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL> alter user 'consultas'@'localhost'
+                              -> identified by'xxxx.1234';
+Query OK, 0 rows affected (0.1510 sec)
+
+MySQL [localhost ssl/eva_1] SQL>

@@ -1,0 +1,422 @@
+MySQL Shell 8.0.14
+
+Copyright (c) 2016, 2019, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+MySQL JS> \sql
+Switching to SQL mode... Commands end with ;
+
+                  ™ 
+MySQL SQL> \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+
+MySQL [localhost ssl] SQL> show databases;
++--------------------+
+| Database           |
++--------------------+
+| eva_1              |
+| information_schema |
+| mysql              |
+| paises             |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.0027 sec)
+
+MySQL [localhost ssl] SQL> drop paises;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'pais
+es' at line 1
+
+MySQL [localhost ssl] SQL> \drop paises
+Unknown command: '\drop paises'
+MySQL [localhost ssl] SQL> show databases;}
++--------------------+
+| Database           |
++--------------------+
+| eva_1              |
+| information_schema |
+| mysql              |
+| paises             |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.0030 sec)
+
+ 
+
+MySQL [localhost ssl] SQL> \ use eva_1
+Unknown command: '\ use eva_1'
+MySQL [localhost ssl] SQL>
+MySQL [localhost ssl] SQL> show tables;
+ERROR: 1046 (3D000): No database selected
+
+MySQL [localhost ssl] SQL> use eva_1
+Default schema set to `eva_1`.
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL> show tables;
++-----------------+
+| Tables_in_eva_1 |
++-----------------+
+| empleados       |
+| paises          |
++-----------------+
+2 rows in set (0.0047 sec)
+
+MySQL [localhost ssl/eva_1] SQL> desc paises
+                              -> ;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| continente | varchar(50) | YES  |     | NULL    |       |
+| poblacion  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0577 sec)
+
+MySQL [localhost ssl/eva_1] SQL> inser into paises
+                              -> values
+                              -> (1, 'mexico','america',120000000);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'inse
+r into paises
+values
+(1, 'mexico','america',120000000)' at line 1
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises values (1,  €
+                              -> ,
+                              -> ,
+                              ->
+                              -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near ',
+,' at line 2
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises values
+                              ->
+                              -> (1,'Mexico',  —‹
+                              -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near '' at
+ line 2
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises values (1, 'mexico', 'americ
+                                 insert into paises values (1, 'mexico', 'americ
+a', 1200000);
+Query OK, 1 row affected (0.4286 sec)
+
+MySQL [localhost ssl/eva_1] SQL> desc paises
+                              -> ;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(11)     | YES  |     | NULL    |       |
+| nombre     | varchar(50) | YES  |     | NULL    |       |
+| continente | varchar(50) | YES  |     | NULL    |       |
+| poblacion  | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0053 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select from * paises;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'from
+ * paises' at line 1
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  1 | mexico | america    |   1200000 |
++----+--------+------------+-----------+
+1 row in set (0.0013 sec)
+
+MySQL [localhost ssl/eva_1] SQL>
+
+
+
+
+
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises values (1, 'mexico', 'americ
+a', 1200000);
+Query OK, 1 row affected (0.1016 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  1 | mexico | america    |   1200000 |
+|  1 | mexico | america    |   1200000 |
++----+--------+------------+-----------+
+2 rows in set (0.0011 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises values (1, 'mexico', 'americ
+a', 1200000);
+Query OK, 1 row affected (0.0853 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises values (1, 'mexico', 'americ
+a', 1200000);
+Query OK, 1 row affected (0.1529 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  1 | mexico | america    |   1200000 |
+|  1 | mexico | america    |   1200000 |
+|  1 | mexico | america    |   1200000 |
+|  1 | mexico | america    |   1200000 |
++----+--------+------------+-----------+
+4 rows in set (0.0012 sec)
+
+MySQL [localhost ssl/eva_1] SQL> delete from paises;
+Query OK, 4 rows affected (0.1400 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
+Empty set (0.0012 sec)
+
+MySQL [localhost ssl/eva_1] SQL> alter table paises changue id id int key auto_i
+                                 alter table paises changue id id int key auto_i
+ncrement;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'chan
+gue id id int key auto_increment' at line 1
+
+MySQL [localhost ssl/eva_1] SQL> alter table paises change id id int key aunto_i
+                                 alter table paises change id id int key aunto_i
+ncrement;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'aunt
+o_increment' at line 1
+
+MySQL [localhost ssl/eva_1] SQL> alter table paises change
+                              -> id id int key auto_increment;
+Query OK, 0 rows affected (2.5358 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+MySQL [localhost ssl/eva_1] SQL> desc paises;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre     | varchar(50) | YES  |     | NULL    |                |
+| continente | varchar(50) | YES  |     | NULL    |                |
+| poblacion  | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0728 sec)
+
+MySQL [localhost ssl/eva_1] SQL> inser into paises ( nombre ,continente, poblaci
+                                 inser into paises ( nombre ,continente, poblaci
+on)values ( 'mejico', 'hamerica',120000);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that
+ corresponds to your MySQL server version for the right syntax to use near 'inse
+r into paises ( nombre ,continente, poblacion)values ( 'mejico', 'hamerica',' at
+ line 1
+
+MySQL [localhost ssl/eva_1] SQL> insert  into paises ( nombre ,continente, pobla
+cion)values ( 'mejico', 'hamerica',120000);
+Query OK, 1 row affected (0.1099 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert  into paises ( nombre ,continente, pobla
+cion)values ( 'mexico', 'America',120000);
+Query OK, 1 row affected (0.0979 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert  into paises ( nombre ,continente, pobla
+cion)values ( 'mexico', 'America',120000);
+Query OK, 1 row affected (0.1000 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert  into paises ( nombre ,continente, pobla
+cion)values ( 'mexico', 'America',120000);
+Query OK, 1 row affected (0.1129 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  1 | mejico | hamerica   |    120000 |
+|  2 | mexico | America    |    120000 |
+|  3 | mexico | America    |    120000 |
+|  4 | mexico | America    |    120000 |
++----+--------+------------+-----------+
+4 rows in set (0.0012 sec)
+
+MySQL [localhost ssl/eva_1] SQL> delete from paises where id>0
+                              -> ;
+Query OK, 4 rows affected (0.1891 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert  into paises ( nombre ,continente, pobla
+cion)values ( 'Mexico', 'America',120000);
+Query OK, 1 row affected (0.1277 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  5 | Mexico | America    |    120000 |
++----+--------+------------+-----------+
+1 row in set (0.0012 sec)
+
+MySQL [localhost ssl/eva_1] SQL> desc paises;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre     | varchar(50) | YES  |     | NULL    |                |
+| continente | varchar(50) | YES  |     | NULL    |                |
+| poblacion  | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0050 sec)
+
+MySQL [localhost ssl/eva_1] SQL> alter table paises
+                              -> change nombre nombre varchar (50) unique;
+Query OK, 0 rows affected (0.6704 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+
+
+MySQL Shell 8.0.14
+
+Copyright (c) 2016, 2019, Oracle and/or its affiliates. All rights reserved.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+
+MySQL JS> \sqql
+Unknown command: '\sqql'
+MySQL JS> \ connect --mc rootâ™ 4local
+Unknown command: '\ connect --mc rootâ™ 4lo'
+MySQL JS> ;
+MySQL JS> \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 9
+Server version: 8.0.14 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+
+MySQL [localhost ssl] JS> \use eva_1
+Default schema set to `eva_1`.
+
+MySQL [localhost ssl/eva_1] JS> desc paises;
+SyntaxError: Unexpected identifier
+
+MySQL [localhost ssl/eva_1] JS> show tables;
+SyntaxError: Unexpected identifier
+
+MySQL [localhost ssl/eva_1] JS> show tables;
+SyntaxError: Unexpected identifier
+
+MySQL [localhost ssl/eva_1] JS> \sql
+Switching to SQL mode... Commands end with ;
+Fetching table and column names from `eva_1` for auto-completion... Press ^C to
+stop.
+
+MySQL [localhost ssl/eva_1] SQL> show tables;
++-----------------+
+| Tables_in_eva_1 |
++-----------------+
+| empleados       |
+| paises          |
++-----------------+
+2 rows in set (0.0037 sec)
+
+MySQL [localhost ssl/eva_1] SQL> desc paises;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre     | varchar(50) | YES  | UNI | NULL    |                |
+| continente | varchar(50) | YES  |     | NULL    |                |
+| poblacion  | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0044 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  5 | Mexico | America    |    120000 |
++----+--------+------------+-----------+
+1 row in set (0.0017 sec)
+
+MySQL [localhost ssl/eva_1] SQL> alter table paises change nombre nombre varchar
+                                 alter table paises change nombre nombre varchar
+                                 alter table paises change nombre nombre varchar
+(50)unique not null;
+Query OK, 0 rows affected, 1 warning (1.9945 sec)
+
+Records: 0  Duplicates: 0  Warnings: 1
+Warning (code 1831): Duplicate index 'nombre_2' defined on the table 'eva_1.pais
+es'. This is deprecated and will be disallowed in a future release.
+
+MySQL [localhost ssl/eva_1] SQL> desc paises;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre     | varchar(50) | NO   | UNI | NULL    |                |
+| continente | varchar(50) | YES  |     | NULL    |                |
+| poblacion  | int(11)     | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0053 sec)
+
+MySQL [localhost ssl/eva_1] SQL> insert into paises (nombre,continente,poblacion
+                                 insert into paises (nombre,continente,poblacion
+)values ('canada','hamerica',32000000);
+Query OK, 1 row affected (0.1624 sec)
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  5 | Mexico | America    |    120000 |
+|  6 | canada | hamerica   |  32000000 |
++----+--------+------------+-----------+
+2 rows in set (0.0013 sec)
+
+MySQL [localhost ssl/eva_1] SQL> update paises
+                              -> set contienente = 'America'
+                              -> where id =10;
+ERROR: 1054 (42S22): Unknown column 'contienente' in 'field list'
+
+MySQL [localhost ssl/eva_1] SQL> update paises set continente= 'America'
+                              -> where id= 10;
+Query OK, 0 rows affected (0.0142 sec)
+
+Rows matched: 0  Changed: 0  Warnings: 0
+
+MySQL [localhost ssl/eva_1] SQL> select * from paises;
++----+--------+------------+-----------+
+| id | nombre | continente | poblacion |
++----+--------+------------+-----------+
+|  5 | Mexico | America    |    120000 |
+|  6 | canada | hamerica   |  32000000 |
++----+--------+------------+-----------+
+2 rows in set (0.0012 sec)
+
+MySQL [localhost ssl/eva_1] SQL>
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+curriculum 1 de febrero tenerlo listo
+
+   connect -- mc root @localhost 
+
+SQL COMUINITI
+
+EVA1_1 INTRIDUCCION _SHELL
+
+
+instalar mysql shell
+instalar base de datos
+
+
+show database; para checar base de datos 
+
+diagomal use sakila 
+
+
+show tables para ver las tablas 
+
+
+
+meterse al shella 
+cabiaar el modo a sql
+
+
+
+select from actor 
+
+sql  ES UN ESTANDAR  STRUCTURED QUERY LENGUAJE    LENGUAJE DE CONSULTAS  ESTANDARL PARA LA CONUSULTA DE DATOS 
+ DATA DEFINITION LENGGE  CRETE , ALTER 
+DATA CONTROL LANGUAGE  INSTRICCIONE DE PRIVILEGIOS  GRANT , REVOKE 
+DATA QUERY LANGAUGE   CONSULTAS 
+DATA MANIPULATION LANGUAGE  INSERT ,UPS, DEL 
+
+
+ CREAR UNA BASE DE DATOS 
+ CREATE DATABASE EVA_1 ; 
+
+
+VERIFICAR QUE SE CREO 
+ SHOW DATABASE 
+
+USE EVA_1
+ SHOW TABLES;
+
+
+
+CREAR TABLA 
+CREATE TABLE PRIMER_TABLA(CAMPO INT);
+
+
+VER SI SE CREO LA TABLA SHOW TABLES
+   DESC PRIMER_TABLA; VER SI SE CREO
+
+
+DROP TABLE PRIMER_TABLA; BORRAR UNA TABLA  
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
